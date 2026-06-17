@@ -1,0 +1,75 @@
+<!-- 
+  ==========================================================================
+  PROJECT: ỨNG DỤNG HỌC MÁY XÂY DỰNG HỆ THỐNG GỢI Ý CHO WEBSITE XEM PHIM
+  SUBJECT: TRÍ TUỆ NHÂN TẠO (AI)
+  TASK: N1 - Thêm UI Đăng nhập / Đăng ký trên Header Banner
+  ASSIGNEE: khai
+  NOTE: Thuần Frontend (HTML/CSS), Không Javascript, Không Logic Backend.
+        (Nền tảng định danh User để thu thập dữ liệu cho hệ thống gợi ý AI)
+  ==========================================================================
+-->
+
+<div class="movie-auth-header">
+    <a href="#" class="movie-auth-header__btn movie-auth-header__btn--register">Đăng ký</a>
+    <a href="#" class="movie-auth-header__btn movie-auth-header__btn--login">Đăng nhập</a>
+</div>
+
+<style>
+.movie-auth-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 8px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.movie-auth-header__btn {
+    display: inline-block;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+/* Nút Đăng nhập: Tone màu vàng nổi bật */
+.movie-auth-header__btn--login {
+    background-color: #ffc107;
+    color: #121212;
+    border: 2px solid #ffc107;
+}
+
+.movie-auth-header__btn--login:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.2);
+}
+
+.movie-auth-header__btn--login:active {
+    transform: translateY(0);
+}
+
+/* Nút Đăng ký: Nền trong suốt, viền xám hài hòa với giao diện tối */
+.movie-auth-header__btn--register {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #3e3e3e;
+}
+
+.movie-auth-header__btn--register:hover {
+    color: #ffc107;
+    border-color: #ffc107;
+    background-color: rgba(255, 193, 7, 0.04);
+    transform: translateY(-1px);
+}
+
+.movie-auth-header__btn--register:active {
+    transform: translateY(0);
+}
+</style>
