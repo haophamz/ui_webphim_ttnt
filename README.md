@@ -7,7 +7,7 @@ Backend (Flask, model, seed data) đã được tách ra khỏi thư mục này 
 - Cung cấp giao diện tĩnh cho chức năng **danh sách tập** và **trang xem tập** (N4).
 - Dễ mở nhanh để demo UI mà không cần chạy backend.
 
-## Nội dung giữ lại (frontend)
+## (frontend)
 - `frontend_n4/index.html` — trang chủ demo (liệt kê phim)
 - `frontend_n4/movie_detail.html` — trang chi tiết phim + danh sách tập
 - `frontend_n4/watch.html` — trang xem tập (player + sidebar danh sách tập)
@@ -16,7 +16,7 @@ Backend (Flask, model, seed data) đã được tách ra khỏi thư mục này 
 
 > Các file frontend ở trên có thể mở trực tiếp hoặc phục vụ bằng web server tĩnh.
 
-## Chạy trang frontend (cách dễ nhất)
+## Chạy trang frontend 
 1. Mở PowerShell, chuyển đến thư mục `frontend_n4`:
 
 ```powershell
@@ -34,12 +34,6 @@ Mở trình duyệt vào: http://localhost:8000
 
 2c) Hoặc mở trực tiếp file `index.html` bằng trình duyệt (kéo thả). Lưu ý: 1 số trình duyệt chặn một số API khi mở bằng file://.
 
-## Lý do tách backend
-- Nhiệm vụ bạn được giao chỉ là frontend (N4). Để tránh xung đột và giúp nhóm khác tích hợp dễ dàng, tôi đã tạm tách/xóa các file backend khỏi thư mục `ui_webphim_ttnt`.
-- Nếu cần phục hồi backend để chạy full demo, có thể khôi phục từ Git hoặc tôi có thể giúp tái tạo `app.py`/`models.py` theo yêu cầu.
-
-## File còn tồn tại/ghi chú
-- File database `ui_webphim_ttnt/movie_app.db` hiện vẫn nằm trong thư mục gốc. Nếu bạn muốn tôi xóa/move file này, tôi có thể thực hiện (cần đảm bảo không bị khóa bởi process khác).
 
 ## Hướng dẫn tích hợp trở lại (tóm tắt)
 - Khi nhóm backend (N2/N5) hoàn thiện API, chỉ cần:
