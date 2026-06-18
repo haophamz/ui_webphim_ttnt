@@ -1,0 +1,655 @@
+/* ============================================================
+   N4 – EPISODES MODULE  |  Dark Cinema Theme
+   Phong cách: Dark theme, accent cam #f5a623, giống PhimHayOK
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap');
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-page:    #0d0d0f;
+  --bg-card:    #18181c;
+  --bg-card2:   #1e1e24;
+  --bg-nav:     #111114;
+  --accent:     #f5a623;
+  --accent-h:   #e6950f;
+  --green:      #2ecc71;
+  --text-main:  #f0f0f0;
+  --text-sub:   #9a9aaa;
+  --border:     #2a2a35;
+  --radius:     8px;
+  --player-bg:  #000;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  background: var(--bg-page);
+  color: var(--text-main);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-page); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg-nav);
+  border-bottom: 1px solid var(--border);
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar .nav-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-logo {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+}
+.nav-logo span {
+  color: var(--accent);
+  background: var(--accent);
+  color: #111;
+  padding: 2px 7px;
+  border-radius: 4px;
+  margin-left: 3px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+  margin-right: auto;
+}
+.nav-links a {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-sub);
+  transition: all .2s;
+  white-space: nowrap;
+}
+.nav-links a:hover { color: var(--text-main); background: var(--bg-card2); }
+
+.nav-search {
+  display: flex;
+  align-items: center;
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.nav-search:focus-within { border-color: var(--accent); }
+.nav-search input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-main);
+  padding: 8px 14px;
+  font-size: 14px;
+  width: 200px;
+  font-family: inherit;
+}
+.nav-search input::placeholder { color: var(--text-sub); }
+.nav-search button {
+  background: none;
+  border: none;
+  color: var(--text-sub);
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: color .2s;
+}
+.nav-search button:hover { color: var(--accent); }
+
+/* ============================================================
+   LAYOUT CONTAINER
+   ============================================================ */
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ============================================================
+   PAGE – INDEX (Trang chủ demo)
+   ============================================================ */
+.page-hero {
+  background: linear-gradient(135deg, #1a1a24 0%, #0d0d0f 60%);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 0 32px;
+}
+.page-hero h1 {
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.page-hero h1 span { color: var(--accent); }
+.page-hero p { color: var(--text-sub); font-size: 14px; }
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 32px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.section-title a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  margin-left: auto;
+}
+
+/* Movie Cards Grid */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 18px;
+  padding-bottom: 48px;
+}
+
+.movie-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+  cursor: pointer;
+}
+.movie-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 8px 32px rgba(245,166,35,.15);
+}
+
+.movie-card-poster {
+  position: relative;
+  aspect-ratio: 2/3;
+  background: var(--bg-card2);
+  overflow: hidden;
+}
+.movie-card-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .35s;
+}
+.movie-card:hover .movie-card-poster img { transform: scale(1.06); }
+
+.movie-card-poster .badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--accent);
+  color: #111;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.movie-card-poster .ep-count {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(0,0,0,.75);
+  backdrop-filter: blur(4px);
+  color: var(--text-main);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.movie-card-poster .play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .25s;
+}
+.movie-card:hover .play-overlay { opacity: 1; }
+.play-overlay svg { width: 52px; height: 52px; fill: rgba(255,255,255,.9); }
+
+/* No-poster placeholder */
+.poster-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #1e1e28, #14141a);
+  color: var(--text-sub);
+  font-size: 13px;
+}
+.poster-placeholder svg { width: 40px; height: 40px; opacity: .4; }
+
+.movie-card-info {
+  padding: 10px 12px 12px;
+}
+.movie-card-info .title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+.movie-card-info .meta {
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+/* ============================================================
+   PAGE – MOVIE DETAIL (Trang chi tiết phim + danh sách tập)
+   ============================================================ */
+.detail-hero {
+  background: linear-gradient(to bottom, #191922 0%, var(--bg-page) 100%);
+  padding: 40px 0 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-layout {
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+}
+
+.detail-poster {
+  flex-shrink: 0;
+  width: 230px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 40px rgba(0,0,0,.6);
+}
+.detail-poster img {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+}
+.detail-poster .no-poster {
+  width: 100%;
+  aspect-ratio: 2/3;
+  background: var(--bg-card2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--text-sub);
+  font-size: 13px;
+}
+.detail-poster .no-poster svg { width: 48px; opacity: .35; }
+
+.detail-info { flex: 1; min-width: 0; }
+
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.tag {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  color: var(--text-sub);
+}
+.tag.hot { background: var(--accent); border-color: var(--accent); color: #111; }
+.tag.done { background: var(--green); border-color: var(--green); color: #111; }
+.tag.airing { background: #3498db; border-color: #3498db; color: #fff; }
+
+.detail-title {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.detail-meta-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 16px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.detail-meta-grid dt { color: var(--text-sub); white-space: nowrap; }
+.detail-meta-grid dd { color: var(--text-main); font-weight: 500; }
+
+.detail-desc {
+  font-size: 14px;
+  color: var(--text-sub);
+  line-height: 1.75;
+  margin-bottom: 24px;
+  max-width: 680px;
+}
+
+.btn-watch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #111;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 8px;
+  transition: background .2s, transform .15s;
+  border: none;
+  cursor: pointer;
+}
+.btn-watch:hover { background: var(--accent-h); transform: translateY(-1px); }
+.btn-watch svg { width: 18px; height: 18px; fill: #111; }
+
+/* Episode Grid Section */
+.episodes-section {
+  padding: 32px 0 48px;
+}
+
+.ep-section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.ep-section-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.ep-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green);
+  cursor: pointer;
+}
+.ep-tab svg { width: 14px; fill: var(--green); }
+
+.episode-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+}
+
+.ep-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-sub);
+  cursor: pointer;
+  transition: all .2s;
+  min-height: 60px;
+}
+.ep-btn:hover {
+  background: var(--bg-card2);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+.ep-btn.is-current {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #111;
+  font-weight: 800;
+}
+.ep-btn .ep-label {
+  font-size: 11px;
+  font-weight: 400;
+  color: inherit;
+  opacity: .7;
+  margin-top: 2px;
+}
+
+/* ============================================================
+   PAGE – WATCH (Trang xem phim)
+   ============================================================ */
+.watch-page { padding: 24px 0 48px; }
+
+.watch-top-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--text-sub);
+}
+.watch-top-bar a:hover { color: var(--accent); }
+.watch-top-bar .sep { opacity: .4; }
+.watch-top-bar .current { color: var(--text-main); font-weight: 600; }
+
+.watch-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Player */
+.player-section { display: flex; flex-direction: column; gap: 16px; }
+
+.player-wrap {
+  background: var(--player-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  position: relative;
+  box-shadow: 0 8px 40px rgba(0,0,0,.6);
+}
+.player-wrap video {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.player-info-bar {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.now-playing {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+.dot-live {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,166,35,.6); }
+  50%       { box-shadow: 0 0 0 6px rgba(245,166,35,0); }
+}
+.now-playing strong { color: var(--text-main); font-weight: 600; }
+
+/* Nav Controls */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+  color: var(--text-sub);
+  transition: all .2s;
+  white-space: nowrap;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+.nav-btn.disabled {
+  opacity: .35;
+  pointer-events: none;
+  cursor: default;
+}
+.nav-btn svg { width: 14px; fill: currentColor; }
+
+.current-ep-pill {
+  background: var(--accent);
+  color: #111;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 6px;
+  letter-spacing: .5px;
+}
+
+/* Sidebar */
+.sidebar-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  position: sticky;
+  top: 80px;
+}
+.sidebar-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sidebar-header h3 { font-size: 15px; font-weight: 700; }
+.sidebar-header .ep-tab { padding: 3px 10px; font-size: 12px; }
+
+.sidebar-episode-list {
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 7px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.sidebar-ep-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 4px;
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-sub);
+  transition: all .2s;
+  min-height: 44px;
+}
+.sidebar-ep-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.sidebar-ep-btn.is-current {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #111;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  background: var(--bg-nav);
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-sub);
+  margin-top: 40px;
+}
+.site-footer span { color: var(--accent); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .watch-layout { grid-template-columns: 1fr; }
+  .sidebar-section { position: static; }
+  .sidebar-episode-list { max-height: 240px; }
+}
+
+@media (max-width: 768px) {
+  .detail-layout { flex-direction: column; }
+  .detail-poster { width: 160px; }
+  .nav-links { display: none; }
+  .nav-search input { width: 140px; }
+  .movies-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+  .episode-grid { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); }
+}

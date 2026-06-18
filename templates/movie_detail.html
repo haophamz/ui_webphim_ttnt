@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}{{ movie.title }} – PhimHay{% endblock %}
+{% block desc %}Xem phim {{ movie.title }} - {{ episodes|length }} tập - PhimHay{% endblock %}
+
+{% block content %}
+
+<!-- ── DETAIL HERO ── -->
+<div class="detail-hero">
+  <div class="container">
+    <div class="detail-layout">
+
+      <!-- Poster -->
+      <div class="detail-poster">
+        {% if movie.poster %}
+        <img src="{{ movie.poster }}" alt="{{ movie.title }}">
+        {% else %}
+        <div class="no-poster">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" width="48">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <path d="M8 21h8M12 17v4" />
+          </svg>
+          Chưa có poster
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Info -->
+      <div class="detail-info">
+        <div class="detail-tags">
+          <span class="tag hot">HOT</span>
+          {% if episodes|length > 0 %}
+          <span class="tag airing">Đang chiếu</span>
+          {% endif %}
+          <span class="tag">Vietsub</span>
+        </div>
+
+        <h1 class="detail-title" id="movie-title">{{ movie.title }}</h1>
+
+        <dl class="detail-meta-grid">
+          <dt>Số tập:</dt>
+          <dd>{{ episodes|length }} tập</dd>
+          <dt>Năm:</dt>
+          <dd>2026</dd>
+          <dt>Quốc gia:</dt>
+          <dd>Đang cập nhật</dd>
+          <dt>Thể loại:</dt>
+          <dd>Hành động, Phiêu lưu</dd>
+        </dl>
+
+        <p class="detail-desc">
+          {% if movie.description %}
+          {{ movie.description }}
+          {% else %}
+          Nội dung đang được cập nhật...
+          {% endif %}
+        </p>
+
+        {% if episodes %}
+        <a class="btn-watch"
+          href="{{ url_for('watch_episode', movie_id=movie.movie_id, episode_number=episodes[0].episode_number) }}"
+          id="btn-watch-now">
+          <svg viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+          Xem Tập 1
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── EPISODES SECTION ── -->
+<div class="episodes-section">
+  <div class="container">
+    <div class="ep-section-header">
+      <h2>Danh Sách Tập</h2>
+      <div class="ep-tab">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M10 8l6 4-6 4V8z" fill="#111" />
+        </svg>
+        Vietsub
+      </div>
+    </div>
+
+    <div class="episode-grid" id="episode-grid">
+      {% for ep in episodes %}
+      <a class="ep-btn" href="{{ url_for('watch_episode', movie_id=movie.movie_id, episode_number=ep.episode_number) }}"
+        id="ep-btn-{{ ep.episode_number }}" title="{{ ep.episode_name }}">
+        {{ ep.episode_number }}
+        <span class="ep-label">Tập</span>
+      </a>
+      {% else %}
+      <p style="color:var(--text-sub);grid-column:1/-1">Chưa có tập nào.</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

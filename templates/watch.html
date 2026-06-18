@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block title %}{{ movie.title }} – Tập {{ episode.episode_number }} – PhimHay{% endblock %}
+{% block desc %}Xem {{ movie.title }} tập {{ episode.episode_number }} - {{ episode.episode_name }} vietsub HD{% endblock %}
+
+{% block content %}
+<div class="watch-page">
+  <div class="container">
+
+    <!-- Breadcrumb -->
+    <div class="watch-top-bar">
+      <a href="{{ url_for('index') }}">Trang chủ</a>
+      <span class="sep">/</span>
+      <a href="{{ url_for('movie_detail', movie_id=movie.movie_id) }}">{{ movie.title }}</a>
+      <span class="sep">/</span>
+      <span class="current">Tập {{ episode.episode_number }}</span>
+    </div>
+
+    <div class="watch-layout">
+
+      <!-- ── CỘT TRÁI: Player + Controls ── -->
+      <div class="player-section">
+
+        <!-- Video Player -->
+        <div class="player-wrap">
+          <video id="main-player" controls autoplay preload="metadata">
+            <source src="{{ episode.video_url }}" type="video/mp4">
+            Trình duyệt không hỗ trợ video HTML5.
+          </video>
+        </div>
+
+        <!-- Info bar -->
+        <div class="player-info-bar">
+          <div class="now-playing">
+            <span class="dot-live"></span>
+            Đang phát:&nbsp;<strong>{{ episode.episode_name }}</strong>
+          </div>
+
+          <!-- Chuyển tập -->
+          <div class="nav-controls">
+            {% if prev_episode %}
+              <a class="nav-btn"
+                 href="{{ url_for('watch_episode', movie_id=movie.movie_id, episode_number=prev_episode.episode_number) }}"
+                 id="btn-prev-ep">
+                <svg viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+                Tập {{ prev_episode.episode_number }}
+              </a>
+            {% else %}
+              <span class="nav-btn disabled">
+                <svg viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+                Tập trước
+              </span>
+            {% endif %}
+
+            <span class="current-ep-pill">TẬP {{ episode.episode_number }}</span>
+
+            {% if next_episode %}
+              <a class="nav-btn"
+                 href="{{ url_for('watch_episode', movie_id=movie.movie_id, episode_number=next_episode.episode_number) }}"
+                 id="btn-next-ep">
+                Tập {{ next_episode.episode_number }}
+                <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+              </a>
+            {% else %}
+              <span class="nav-btn disabled">
+                Tập tiếp
+                <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+      </div><!-- /player-section -->
+
+      <!-- ── CỘT PHẢI: Sidebar danh sách tập ── -->
+      <aside class="sidebar-section" id="episode-sidebar">
+        <div class="sidebar-header">
+          <h3>Danh sách tập</h3>
+          <div class="ep-tab">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4V8z" fill="#111"/></svg>
+            Vietsub
+          </div>
+        </div>
+
+        <div class="sidebar-episode-list" id="sidebar-ep-list">
+          {% for ep in all_episodes %}
+          <a class="sidebar-ep-btn {% if ep.episode_number == episode.episode_number %}is-current{% endif %}"
+             href="{{ url_for('watch_episode', movie_id=movie.movie_id, episode_number=ep.episode_number) }}"
+             id="sidebar-ep-{{ ep.episode_number }}"
+             title="{{ ep.episode_name }}">
+            {{ ep.episode_number }}
+          </a>
+          {% endfor %}
+        </div>
+      </aside>
+
+    </div><!-- /watch-layout -->
+  </div><!-- /container -->
+</div><!-- /watch-page -->
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+  // Tự động chuyển sang tập tiếp theo khi video kết thúc
+  var player = document.getElementById('main-player');
+  {% if next_episode %}
+  var nextUrl = "{{ url_for('watch_episode', movie_id=movie.movie_id, episode_number=next_episode.episode_number) }}";
+  player.addEventListener('ended', function () {
+    window.location.href = nextUrl;
+  });
+  {% endif %}
+
+  // Scroll sidebar tới tập đang phát
+  var currentBtn = document.querySelector('.sidebar-ep-btn.is-current');
+  if (currentBtn) {
+    currentBtn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+})();
+</script>
+{% endblock %}

@@ -1,83 +1,53 @@
-# N4 — Episodes Module (Tập phim)
+# N4 — Episodes Module (Frontend-only)
 
-Module này triển khai đúng 5 chức năng được giao cho N4 trong đồ án
-**"Ứng dụng học máy xây dựng hệ thống gợi ý cho website xem phim"**.
+Phiên bản này đã được tinh gọn để chỉ bao gồm phần frontend (HTML/CSS/JS) cho nhiệm vụ N4 (tập phim).
+Backend (Flask, model, seed data) đã được tách ra khỏi thư mục này để nhóm khác đảm nhiệm tích hợp sau.
 
-## 1. Cài đặt & chạy thử
+## Mục đích
+- Cung cấp giao diện tĩnh cho chức năng **danh sách tập** và **trang xem tập** (N4).
+- Dễ mở nhanh để demo UI mà không cần chạy backend.
 
-```bash
-pip install -r requirements.txt
-python seed_data.py      # tạo database SQLite + chèn dữ liệu mẫu (One Piece, The Last of Us)
-python app.py             # chạy server tại http://127.0.0.1:5000
+## Nội dung giữ lại (frontend)
+- `frontend_n4/index.html` — trang chủ demo (liệt kê phim)
+- `frontend_n4/movie_detail.html` — trang chi tiết phim + danh sách tập
+- `frontend_n4/watch.html` — trang xem tập (player + sidebar danh sách tập)
+- `frontend_n4/static/css/style.css` — CSS giao diện
+- `frontend_n4/static/js/script.js` — JS nhỏ phục vụ UI
+
+> Các file frontend ở trên có thể mở trực tiếp hoặc phục vụ bằng web server tĩnh.
+
+## Chạy trang frontend (cách dễ nhất)
+1. Mở PowerShell, chuyển đến thư mục `frontend_n4`:
+
+```powershell
+cd 'C:\Users\ADMIN\Documents\code_PY\n4_episodes_module\frontend_n4'
 ```
 
-Mở `http://127.0.0.1:5000` để vào trang demo (trang chủ tạm), bấm vào 1 phim
-để xem danh sách tập, bấm vào 1 tập để vào trang phát video.
+2a) Chạy bằng Python HTTP server (khuyến nghị):
 
-## 2. Đối chiếu chức năng với yêu cầu N4
-
-| Yêu cầu N4 | Triển khai trong code |
-|---|---|
-| 1. Hiển thị danh sách tập phim | `GET /movie/<movie_id>` → `templates/movie_detail.html` |
-| 2. Xem tập phim | `GET /watch/<movie_id>/<episode_number>` → `templates/watch.html` |
-| 3. Đánh dấu tập đang xem | class `is-current` trong sidebar danh sách tập (`watch.html`) |
-| 4. Chuyển tập trước/sau | nút `<< Tập trước` / `Tập tiếp >>`, tự disable khi ở tập đầu/cuối |
-| 5. Lưu lịch sử xem | hàm `log_watch_history()` trong `app.py`, ghi vào bảng `WatchHistory` mỗi khi vào trang xem |
-
-Database đúng theo thiết kế trong tài liệu: `models.py` định nghĩa `Movie`,
-`Episode` (1 Movie - N Episode), và thêm `WatchHistory` để lưu lịch sử xem.
-
-## 3. API cho các thành viên khác / nhóm AI dùng
-
-- `GET /api/movies/<movie_id>/episodes` — danh sách tập dạng JSON (N2/N3 có thể gọi để hiển thị)
-- `GET /api/watch-history` — toàn bộ lịch sử xem, **đây là input cho hệ thống Recommendation (AI)**
-- `GET /api/watch-history/<user_id>` — lịch sử xem của 1 user cụ thể
-
-## 4. Điểm cần tích hợp với các bạn khác trong nhóm
-
-- **N1 (Header/Banner/Login UI):** hiện `base.html` có thanh điều hướng tạm
-  (`<header class="topbar">`). Khi N1 làm xong header thật, chỉ cần thay
-  block đó.
-- **N5 (Đăng nhập/Đăng ký):** hàm `current_user_id()` trong `app.py` hiện
-  mặc định trả về `user_id = 1` (guest). Khi N5 hoàn thành login và lưu
-  `session['user_id']` lúc đăng nhập thành công, N4 sẽ tự động lấy đúng
-  user_id thật — không cần sửa logic khác.
-- **N2/N3 (Movie list / Movie detail / Yêu thích):** bảng `Movie` ở đây là
-  bản tối giản chỉ phục vụ N4 chạy độc lập. Khi merge code, nên dùng chung
-  1 bảng `Movie` (do N2/N3 mở rộng thêm cột như thể loại, đánh giá...),
-  N4 chỉ cần bảng `Episode` + `WatchHistory` tham chiếu tới `movie_id`.
-- **Đội AI (Recommendation):** dùng endpoint `/api/watch-history` (hoặc
-  query trực tiếp bảng `watch_history`) làm dữ liệu huấn luyện/đầu vào.
-
-## 5. Cấu trúc thư mục
-
+```powershell
+python -m http.server 8000
 ```
-n4_episodes_module/
-├── app.py              # Flask routes (5 chức năng N4 + API)
-├── models.py            # Movie, Episode, WatchHistory (SQLAlchemy)
-├── seed_data.py          # Dữ liệu mẫu để demo
-├── requirements.txt
-├── templates/
-│   ├── base.html
-│   ├── index.html        # trang demo tạm (N2 sẽ thay bằng trang thật)
-│   ├── movie_detail.html # Chức năng 1
-│   └── watch.html        # Chức năng 2, 3, 4 (+ trigger Chức năng 5)
-└── static/
-    ├── css/style.css      # giao diện "rạp chiếu phim cổ điển" (marquee + filmstrip)
-    └── js/script.js
-```
+Mở trình duyệt vào: http://localhost:8000
 
-## 6. Nâng cấp gợi ý (nếu còn thời gian)
+2b) Nếu dùng VS Code: mở folder `frontend_n4` và sử dụng extension **Live Server** → Go Live.
 
-- Lưu thêm tiến trình xem (số giây đã xem) vào `WatchHistory` để AI biết
-  user xem hết tập hay bỏ giữa.
-- Thêm nút "Đánh dấu đã xem hết" thủ công.
-- Chuyển từ SQLite sang MySQL khi nhóm deploy chung (chỉ cần đổi
-  `SQLALCHEMY_DATABASE_URI` trong `app.py`).
+2c) Hoặc mở trực tiếp file `index.html` bằng trình duyệt (kéo thả). Lưu ý: 1 số trình duyệt chặn một số API khi mở bằng file://.
 
-Mở Terminal (PowerShell hoặc Command Prompt) trong thư mục project, rồi gõ lệnh sau:
+## Lý do tách backend
+- Nhiệm vụ bạn được giao chỉ là frontend (N4). Để tránh xung đột và giúp nhóm khác tích hợp dễ dàng, tôi đã tạm tách/xóa các file backend khỏi thư mục `ui_webphim_ttnt`.
+- Nếu cần phục hồi backend để chạy full demo, có thể khôi phục từ Git hoặc tôi có thể giúp tái tạo `app.py`/`models.py` theo yêu cầu.
 
-powershell
-.\run.bat
-Trang	Link
-🏠 Trang chủ (danh sách phim)	http://127.0.0.1:5000
+## File còn tồn tại/ghi chú
+- File database `ui_webphim_ttnt/movie_app.db` hiện vẫn nằm trong thư mục gốc. Nếu bạn muốn tôi xóa/move file này, tôi có thể thực hiện (cần đảm bảo không bị khóa bởi process khác).
+
+## Hướng dẫn tích hợp trở lại (tóm tắt)
+- Khi nhóm backend (N2/N5) hoàn thiện API, chỉ cần:
+  - Thay các đường link tĩnh (`movie_detail.html`, `watch.html`) bằng template Jinja tương ứng hoặc gọi dữ liệu qua fetch/AJAX.
+  - Map endpoint backend → các nút/links hiện có (ví dụ: `/watch/<movie_id>/<ep>`).
+
+## Liên hệ / Ghi chú
+- Đây là bản giao N4 (chỉ frontend). Nếu muốn tôi tinh chỉnh CSS để giống chính xác giao diện tham chiếu `https://soniabragaonline.com/`, cho biết mức độ chi tiết (color/font/layout).
+
+---
+Generated/updated by the frontend maintainer for task N4.

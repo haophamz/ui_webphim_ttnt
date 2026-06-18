@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}PhimHay – N4 Episodes Module{% endblock %}</title>
+  <meta name="description" content="{% block desc %}Website xem phim trực tuyến – module N4 tập phim{% endblock %}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" id="main-navbar">
+    <div class="nav-inner">
+      <a class="nav-logo" href="{{ url_for('index') }}">PHIM<span>HAY</span></a>
+      <div class="nav-links">
+        <a href="{{ url_for('index') }}">Trang Chủ</a>
+        <a href="#">Quốc Gia</a>
+        <a href="#">Thể Loại</a>
+        <a href="#">Năm</a>
+      </div>
+      <form class="nav-search" action="#" method="get">
+        <input type="text" name="q" placeholder="Tìm kiếm phim..." id="search-input">
+        <button type="submit" aria-label="Tìm kiếm">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"
+                  stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </nav>
+
+  <!-- ── MAIN CONTENT ── -->
+  {% block content %}{% endblock %}
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <p>© 2024 <span>PhimHay</span> – N4 Episodes Module &nbsp;|&nbsp; Nhóm Học Máy</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
