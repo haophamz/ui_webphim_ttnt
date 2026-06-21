@@ -1,0 +1,320 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Movie</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<div class="movie-detail">
+
+    <!-- HERO -->
+    <div class="movie-hero">
+
+        <div class="hero-banner">
+            <img src="bai-hoc-dang-doi-poster.jpg" alt="">
+        </div>
+
+        <div class="hero-overlay"></div>
+
+        <!-- Nút Share -->
+        <div class="hero-actions">
+            <button class="hero-icon" onclick="shareMovie()">
+                <i class="fa-regular fa-paper-plane"></i>
+            </button>
+        </div>
+
+        <div class="hero-content">
+
+            <div class="poster">
+                <img src="bai-hoc-dang-doi-poster.jpg" alt="">
+            </div>
+
+            <div class="hero-info">
+
+                <h1>Bài Học Đáng Đời</h1>
+
+                <p>
+                    <strong>Đạo diễn:</strong>
+                    Hong Jong-chan
+                </p>
+
+                <p>
+                    <strong>Diễn viên:</strong>
+                    Kim Mu-yeol, Lee Sung-min
+                </p>
+
+                <span class="hero-tag">
+                    Phim Bộ
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- PHẦN NỘI DUNG -->
+    <div class="movie-info">
+
+        <div class="tabs">
+
+            <button class="tab-btn active"
+                    onclick="showTab('detail')">
+                Chi tiết
+            </button>
+
+            <button class="tab-btn"
+                    onclick="showTab('comment')">
+                Bình luận
+            </button>
+
+        </div>
+
+        <!-- TAB BÌNH LUẬN -->
+        <div id="comment" class="tab-content">
+
+            <div class="comment-box">
+
+                <textarea
+                    rows="4"
+                    placeholder="Nhập bình luận của bạn...">
+                </textarea>
+
+                <button class="comment-btn">
+                    Gửi bình luận
+                </button>
+
+            </div>
+
+            <div class="comment-list">
+
+                <div class="comment-item">
+                    <strong>Nguyễn Văn A</strong>
+                    <p>Phim rất hay, nội dung cuốn hút.</p>
+                </div>
+
+                <div class="comment-item">
+                    <strong>Trần Thị B</strong>
+                    <p>Diễn xuất tốt, đáng xem.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+</div>
+  <div class="movie-header">
+
+    <h1 class="movie-name">
+        Bài Học Đáng Đời
+    </h1>
+
+    <div class="movie-subtitle">
+        <span>Teach You a Lesson</span>
+
+        <span class="quality-tag">
+            Full HD + Vietsub
+        </span>
+    </div>
+
+</div>
+
+    <div class="rating">
+
+    <i class="fa-regular fa-star star" data-value="1"></i>
+    <i class="fa-regular fa-star star" data-value="2"></i>
+    <i class="fa-regular fa-star star" data-value="3"></i>
+    <i class="fa-regular fa-star star" data-value="4"></i>
+    <i class="fa-regular fa-star star" data-value="5"></i>
+
+    <span id="ratingText">Chưa đánh giá</span>
+
+    <span class="rating-score">4.9/5</span>
+
+</div>
+
+<div class="movie-meta">
+    <span>Phim bộ</span>
+    <span class="divider">|</span>
+    <span>2026</span>
+    <span class="divider">|</span>
+    <span class="status">Hoàn thành</span>
+</div>
+
+<div class="keywords">
+    <p>Từ khóa:</p>
+
+    <span class="tag">baihocdangdoi</span>
+    <span class="tag">teachyoualesson</span>
+    <span class="tag">hanquoc</span>
+    <span class="tag">hocduong</span>
+    <span class="tag">tamly</span>
+</div>
+
+    <div class="info-list">
+
+        <p>
+            <span>Thể loại:</span>
+            Tâm lý, Học đường, Hài hước
+        </p>
+
+        <p>
+            <span>Quốc gia:</span>
+            Hàn Quốc
+        </p>
+
+        <p>
+            <span>Năm sản xuất:</span>
+            2026
+        </p>
+
+        <p>
+            <span>Thời lượng:</span>
+            60 Phút
+        </p>
+        <p>
+            <span> Số tập:</span> 10 tập
+        </p>
+    </div>
+
+<div class="action-buttons">
+    <button class="watch-btn">
+        ▶ XEM NGAY
+    </button>
+
+    <button class="favorite-btn" id="favoriteBtn">
+        <i class="fa-regular fa-heart"></i>
+        YÊU THÍCH
+    </button>
+</div>
+<div class="title-row">
+</div>
+<div class="description">
+        <h2>Nội dung phim</h2>
+    <p> 
+        <P id="movieText">
+            "Teach You a Lesson" hay còn được 
+        biết đến với tên gốc "Bài Học Đáng Đời" là một
+        bộ phim hành động, hài hước, phiêu lưu và chính kịch đầy hấp dẫn.
+        Được đạo diễn bởi 홍종찬 và có sự tham gia của đội ngũ diễn viên tài năng gồm
+        김무열, 이성민, 진기주, 피오, 하영, 이지해, 이승규, 김태영, 소이한, và 유영은,
+        bộ phim này mang đến cho khán giả những trải nghiệm độc đáo và không thể nào quên.
+        Câu chuyện của "Bài Học Đáng Đời" bắt đầu khi kỷ cương trong một trường học bị sụp đổ. 
+        Để khôi phục lại trật tự và nền giáo dục chất lượng, một nhóm thanh tra lập dị không theo sách vở xuất hiện. 
+        Với phong cách dạy dỗ đanh thép, không khoan nhượng, họ quyết tâm dạy cho học sinh những bài học mang tính chất xã hội và nhân văn,
+        không chỉ là kiến thức học thuật. Những tình tiết hài hước xen lẫn trong cảnh hành động nghẹt thở sẽ khiến khán giả cười không ngớt.
+        Đồng thời, thông điệp sâu sắc về ý nghĩa của việc truyền đạt kiến thức và giá trị đời sống qua các bài học không chính thống cũng là điểm nổi bật của bộ phim này. Với sự kết hợp hoàn hảo giữa các yếu tố giáo dục, giải trí và giọng hài hước sắc bén, "Bài Học Đáng Đời" hứa hẹn sẽ mang đến cho khán giả những tràng cười sảng khoái cùng những bài học ý nghĩa.
+    </p>
+    <button id="readMore">
+    Xem thêm
+    </button>
+</div> 
+
+<script>
+const favoriteBtn = document.getElementById("favoriteBtn");
+
+favoriteBtn.addEventListener("click", () => {
+
+    favoriteBtn.classList.toggle("active");
+
+    const heart = favoriteBtn.querySelector("i");
+
+    if(favoriteBtn.classList.contains("active")){
+        heart.classList.remove("fa-regular");
+        heart.classList.add("fa-solid");
+    }else{
+        heart.classList.remove("fa-solid");
+        heart.classList.add("fa-regular");
+    }
+
+});
+const stars = document.querySelectorAll(".star");
+const ratingText = document.getElementById("ratingText");
+
+stars.forEach(star => {
+
+    star.addEventListener("click", () => {
+
+        let value = star.dataset.value;
+
+        stars.forEach(s => {
+            s.classList.remove("fa-solid","active");
+            s.classList.add("fa-regular");
+        });
+
+        for(let i = 0; i < value; i++){
+
+            stars[i].classList.remove("fa-regular");
+            stars[i].classList.add("fa-solid","active");
+
+        }
+
+        ratingText.textContent = value + "/5 sao";
+
+    });
+
+});
+</script>
+<script>
+    const btn = document.getElementById("readMore");
+const text = document.getElementById("movieText");
+
+btn.addEventListener("click", () => {
+
+    text.classList.toggle("show");
+
+    if(text.classList.contains("show")){
+        btn.textContent = "Thu gọn";
+    }else{
+        btn.textContent = "Xem thêm";
+    }
+
+});
+</script>
+
+<script>
+function showTab(tabId){
+
+    document
+    .querySelectorAll(".tab-content")
+    .forEach(tab=>{
+        tab.classList.remove("active");
+    });
+
+    document
+    .querySelectorAll(".tab-btn")
+    .forEach(btn=>{
+        btn.classList.remove("active");
+    });
+
+    document
+    .getElementById(tabId)
+    .classList.add("active");
+
+    event.target.classList.add("active");
+}
+</script>
+
+<script>
+function shareMovie(){
+
+    if(navigator.share){
+
+        navigator.share({
+            title: "Bài Học Đáng Đời",
+            text: "Xem phim Bài Học Đáng Đời",
+            url: window.location.href
+        });
+
+    }else{
+
+        navigator.clipboard.writeText(window.location.href);
+        alert("Đã sao chép liên kết phim!");
+
+    }
+
+}
+</script>
