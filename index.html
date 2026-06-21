@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phim Đang Chiếu – PhimHay</title>
+  <meta name="description" content="Website xem phim trực tuyến – module N4 tập phim">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" id="main-navbar">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">PHIM<span>HAY</span></a>
+      <div class="nav-links">
+        <a href="index.html">Trang Chủ</a>
+        <a href="#">Quốc Gia</a>
+        <a href="#">Thể Loại</a>
+        <a href="#">Năm</a>
+      </div>
+      <form class="nav-search" action="#" method="get">
+        <input type="text" name="q" placeholder="Tìm kiếm phim..." id="search-input">
+        <button type="submit" aria-label="Tìm kiếm">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" stroke="currentColor" stroke-width="2"
+              fill="none" stroke-linecap="round" />
+          </svg>
+        </button>
+      </form>
+    </div>
+  </nav>
+
+  <!-- ── MAIN CONTENT ── -->
+  <div class="page-hero">
+    <div class="container">
+      <h1>Phim Đang <span>Chiếu</span></h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section-title">
+      Danh Sách Phim
+      <a href="#">Xem tất cả &rsaquo;</a>
+    </div>
+
+    <div class="movies-grid">
+      <!-- Phim 1 -->
+      <a class="movie-card" href="movie_detail.html">
+        <div class="movie-card-poster">
+          <img src="https://upload.wikimedia.org/wikipedia/en/3/3a/One_Piece%2C_Volume_61_Cover_%28Japanese%29.jpg"
+            alt="Demo 1" loading="lazy">
+          <div class="badge">HOT</div>
+          <div class="ep-count">6 tập</div>
+          <div class="play-overlay">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+        </div>
+        <div class="movie-card-info">
+          <div class="title">Demo 1</div>
+          <div class="meta">6 tập &nbsp;·&nbsp; 2026</div>
+        </div>
+      </a>
+
+      <!-- Phim 2 -->
+      <a class="movie-card" href="movie_detail.html">
+        <div class="movie-card-poster">
+          <img src="https://upload.wikimedia.org/wikipedia/en/9/9b/The_Last_of_Us_2023_poster.jpg" alt="Demo 2"
+            loading="lazy">
+          <div class="badge">HOT</div>
+          <div class="ep-count">4 tập</div>
+          <div class="play-overlay">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+        </div>
+        <div class="movie-card-info">
+          <div class="title">Demo 2</div>
+          <div class="meta">4 tập &nbsp;·&nbsp; 2024</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <p>© 2026 <span>PhimHay</span> – N4 Episodes Module &nbsp;|&nbsp; Nhóm Học Máy</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
