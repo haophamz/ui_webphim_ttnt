@@ -1,0 +1,12 @@
+{
+  "name": "footer-mockup-screenshot",
+  "version": "1.0.0",
+  "description": "Screenshot movie footer mockup",
+  "main": "screenshot.js",
+  "scripts": {
+    "screenshot": "node screenshot.js"
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0"
+  }
+}
